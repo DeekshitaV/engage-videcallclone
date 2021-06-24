@@ -11,20 +11,22 @@ app.set('view engine', 'ejs');
 app.use('/peerjs' , peerServer);
 app.use(express.static('public'));
 
+app.get("/" , (req,res) =>{
+    res.redirect('/${uuidv4()}');
+ });
+ 
+
 app.get("/:room" , (req,res) =>{
   
      res.render("CallRoom", {roomId: req.params.room});
       
 });
 
-app.get("/" , (req,res) =>{
-   res.redirect('/${uuidv4()}');
-});
 
 io.on('connection' , (socket) => {
     socket.on('joinRoom' , ( roomId , userId) => {
         socket.join(roomId);
-        socket.broadcast.to(roomId).emit('userConnected' , userId);
+        socket.to(roomId).broadcast.emit('userConnected' , userId);
     });
 });
 
