@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width , initial-scale=1.0 " />
+        <title>Microsoft Teams</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+        <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script>  
+      const ROOM_ID = "<%= roomId %>" ;   
+    </script> 
+    </head>
+    <body>
+        <div class = "header">
+            <div class = "logo">
+               <h2>Meeting Room</h2>
+            </div>
+            <div class = "options">
+                <div id="Video" class="options__button">
+                    <i class="fa fa-video-camera"></i>
+                </div>
+                <div id="mic" class="options__button">
+                    <i class="fa fa-microphone"></i>
+                </div>
+                <div id="chat" class="options__button">
+                    <i class="fa fa-comment"></i>
+                </div>
+                <div id="invite" class="options__button">
+                    <i class="fas fa-user-plus"></i>
+                </div> 
+            </div>
+        </div>    
+        <div class = "main">
+            <div class = "main-left">
+                <div class = "videos-group">
+                    <div id = "video-grid">
+
+                    </div>
+                </div>
+            </div>
+            <div class="main-right">
+                <div class = "main-chat-window">
+                    <div class ="messages">
+
+                    </div>
+                </div>
+                <div class="main-message-container">
+                    <input id="chat-message" type="text" autocomplete="off" placeholder="Type your message...">
+                    <div id="send" class="options__button">
+                        <i class="fa fa-send-o" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src = "script.js"></script>
+</html>
