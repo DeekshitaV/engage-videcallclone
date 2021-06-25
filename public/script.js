@@ -122,13 +122,13 @@ mic.addEventListener("click", () => {
     }
 });
 
-const currentpage = window.location.href;
+//const currentpage = window.location.href;
 
-invite.addEventListener("click", (e) => {
-    location.href = 'mailto:attendee@example.org?Subject:Join My Teams Meeting&body=Link to my meeting : ' + currentpage; 
-    window.setTimeout(function () { location.href="newPage.html" }, 0); 
+// invite.addEventListener("click", (e) => {
+//     location.href = 'mailto:attendee@example.org?Subject:Join My Teams Meeting&body=Link to my meeting : ' + currentpage; 
+//     window.setTimeout(function () { location.href="newPage.html" }, 0); 
 
-});
+// });
 
 socket.on("create-message", (message, userName) => {
     messages.innerHTML =
