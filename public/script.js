@@ -123,7 +123,7 @@ mic.addEventListener("click", () => {
 });
 
 invite.addEventListener("click", (e) => {
-    window.location.href = 'mailto:attendee@example.org?Subject:Join My Teams Meeting&body=Link to my meeting : ' + window.location.href;
+    var sendInvite = 'mailto:attendee@example.org?Subject:Join My Teams Meeting&body=Link to my meeting : ' + window.location.href;
 });
 
 socket.on("create-message", (message, userName) => {
