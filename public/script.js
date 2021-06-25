@@ -40,7 +40,7 @@ navigator.mediaDevices.getUserMedia({
     //listen to Call event
     peer.on('call', (call) => {
         call.answer(stream);
-        const video = document.createElement(video);
+        const video = document.createElement("video");
         //listen to Stream
         call.on('stream' , (userVideoStream) => {
             addVideoStream( video, userVideoStream);
@@ -71,7 +71,7 @@ const addVideoStream = (video, stream) => {
 };
 
 peer.on('open' , (id) => {
-    socket.emit('joinRoom' , ROOM_ID , id );
+    socket.emit('joinRoom' , ROOM_ID , id , user);
 });
 
 let text = document.querySelector('#chat-message');
@@ -85,12 +85,12 @@ send.addEventListener("click" , (e) => {
    }
 });
 
-// text.addEventListener("keydown" , (e) => {
-//     if(e.key === "enter" && text.nodeValue.length !== 0 ){
-//         socket.emit("message" , text.value);
-//         text.value = "";
-//     }
-// });
+text.addEventListener("keydown" , (e) => {
+    if(e.key === "Enter" && text.value.length !== 0 ){
+        socket.emit("message" , text.value);
+        text.value = "";
+    }
+});
 
 const invite = document.querySelector('#invite');
 const mic = document.querySelector('#mic');
@@ -132,7 +132,7 @@ invite.addEventListener("click", (e) => {
 socket.on("create-message", (message, userName) => {
     messages.innerHTML =
       messages.innerHTML +
-      `<div class="messages">
+      `<div class="message">
           <b><i class="far fa-user-circle"></i> <span> ${
             userName === user ? "me" : userName
           }</span> </b>
