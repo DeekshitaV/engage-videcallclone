@@ -63,8 +63,8 @@ const connectToNewUser = (userId,stream)=>{
 
     });
     call.on('close', () => {
-        video.remove()
-    })
+        video.remove();
+    });
     
 };
 
