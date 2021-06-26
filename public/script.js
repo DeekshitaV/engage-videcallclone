@@ -55,6 +55,8 @@ navigator.mediaDevices.getUserMedia({
 });
 
 socket.on('user-disconnected' , (userId) => {
+    const video = document.getElementById('video');
+    videoGrid.remove(video);
     if( peers[userId]) 
         peers[userId].close();
 });
