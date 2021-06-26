@@ -68,6 +68,9 @@ const connectToNewUser = (userId,stream)=>{
        addVideoStream( video , userVideoStream);
     });
     peers[userId] = call;
+    call.on('close', () => {
+        video.remove();
+    });
 };
 
 //create function addVideoStream
@@ -82,8 +85,6 @@ const addVideoStream = (video, stream) => {
 peer.on('open' , (id) => {
     socket.emit('joinRoom' , ROOM_ID , id , user);
 });
-
-
 
 
 let text = document.querySelector('#chat-message');
