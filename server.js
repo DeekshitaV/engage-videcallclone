@@ -22,11 +22,9 @@ app.get("/:room" , (req,res) =>{
       
 });
 
-var users = {};
 
 io.on('connection' , (socket) => {
     socket.on('joinRoom' , ( roomId , userId, userName) => {
-        users[socket.id] = socket;
         socket.join(roomId);
         socket.broadcast.to(roomId).emit('userConnected' , userId);
         socket.on("message", (message) => {
