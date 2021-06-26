@@ -33,10 +33,7 @@ io.on('connection' , (socket) => {
             io.to(roomId).emit("create-message", message, userName);
         });   
     });
-    socket.on('leaveRoom' , ( roomId  , userName ) => {
-        delete users[socket.id];
-        socket.broadcast.to(roomId).emit('user left' , userName);
-    });
+    
 });
 
 server.listen(process.env.PORT || 3030);
