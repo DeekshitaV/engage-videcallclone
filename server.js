@@ -30,10 +30,11 @@ io.on('connection' , (socket) => {
         socket.on("message", (message) => {
             io.to(roomId).emit("create-message", message, userName);
         });   
+        socket.on('disconnect' , () => {
+            socket.broadcast.to(roomId).emit('user-disconnected' , userId);
+        });
     });
-    socket.on('disconnect' , () => {
-        socket.broadcast.to(roomId).emit('user-disconnected' , userId);
-    });
+    
 });
 
 server.listen(process.env.PORT || 3030);

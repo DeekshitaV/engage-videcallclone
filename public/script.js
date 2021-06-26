@@ -51,13 +51,13 @@ navigator.mediaDevices.getUserMedia({
     socket.on('userConnected', (userId) => {
         connectToNewUser(userId,stream);
     });
-    socket.on('user-disconnected' , (userId) => {
-        if( peers[userId]) 
-            peers[userId].close();
-    });
+  
 });
 
-
+socket.on('user-disconnected' , (userId) => {
+    if( peers[userId]) 
+        peers[userId].close();
+});
 
 //create function connectToNewUser
 const connectToNewUser = (userId,stream)=>{
