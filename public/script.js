@@ -81,7 +81,7 @@ peer.on('open' , (id) => {
     socket.emit('joinRoom' , ROOM_ID , id , user);
 });
 
-socket.on('user-disconnected', userId => {
+socket.on('user-disconnected', (userId) => {
     if (peers[userId]) peers[userId].close()
 });
 
