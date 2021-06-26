@@ -31,7 +31,9 @@ io.on('connection' , (socket) => {
             io.to(roomId).emit("create-message", message, userName);
         });   
     });
-    
+    socket.on('disconnect' , () => {
+        socket.broadcast.to(roomId).emit('userDisconnected' , userId);
+    });
 });
 
 server.listen(process.env.PORT || 3030);

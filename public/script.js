@@ -5,6 +5,7 @@ const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 const showChat = document.querySelector('#chat');
 myVideo.muted = true;
+var peers = {};
 
 showChat.addEventListener("click", () => {
     if( document.querySelector(".main-right").style.display === "flex"  )
@@ -61,6 +62,7 @@ const connectToNewUser = (userId,stream)=>{
     call.on('stream' , userVideoStream => {
        addVideoStream( video , userVideoStream);
     });
+    peers[userId] = call;
 };
 
 //create function addVideoStream
@@ -75,6 +77,11 @@ const addVideoStream = (video, stream) => {
 peer.on('open' , (id) => {
     socket.emit('joinRoom' , ROOM_ID , id , user);
 });
+
+socket.on('userDisconnected' , (userId) => {
+    if( peers[userId]) 
+        peers[userId].close();
+})
 
 
 let text = document.querySelector('#chat-message');
