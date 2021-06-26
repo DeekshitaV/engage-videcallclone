@@ -5,6 +5,7 @@ const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 const showChat = document.querySelector('#chat');
 myVideo.muted = true;
+var peers = {};
 
 showChat.addEventListener("click", () => {
     if( document.querySelector(".main-right").style.display === "flex"  )
@@ -64,6 +65,7 @@ const connectToNewUser = (userId,stream)=>{
     call.on('close', () => {
         video.remove();
     });
+    peers[userId] = call;
     window.onunload() = () => {
         socket.emit('user-disconnected' , userId);
     };
