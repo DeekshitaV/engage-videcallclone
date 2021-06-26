@@ -51,6 +51,10 @@ navigator.mediaDevices.getUserMedia({
     socket.on('userConnected', (userId) => {
         connectToNewUser(userId,stream);
     });
+    socket.on('user-disconnected' , (userId) => {
+        if( peers[userId]) 
+            peers[userId].close();
+    });
 });
 
 
@@ -78,10 +82,7 @@ peer.on('open' , (id) => {
     socket.emit('joinRoom' , ROOM_ID , id , user);
 });
 
-socket.on('userDisconnected' , (userId) => {
-    if( peers[userId]) 
-        peers[userId].close();
-})
+
 
 
 let text = document.querySelector('#chat-message');
