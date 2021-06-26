@@ -74,6 +74,10 @@ peer.on('open' , (id) => {
     socket.emit('joinRoom' , ROOM_ID , id , user);
 });
 
+peer.on('close' , (id) => {
+    socket.emit('leaveRoom' , ROOM_ID , user );
+}); 
+
 let text = document.querySelector('#chat-message');
 let send = document.getElementById('send');
 let messages = document.querySelector('.messages');
