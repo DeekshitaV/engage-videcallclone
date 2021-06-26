@@ -52,12 +52,15 @@ navigator.mediaDevices.getUserMedia({
     });
 });
 
+var videos = {};
+
 //create function connectToNewUser
 const connectToNewUser = (userId,stream)=>{
     const call = peer.call(userId, stream);
     const video = document.createElement('video');
     call.on('stream' , userVideoStream => {
        addVideoStream( video , userVideoStream);
+       videos[userId] = video;
     });
 };
 
@@ -76,6 +79,9 @@ peer.on('open' , (id) => {
 
 peer.on('close' , (id) => {
     socket.emit('leaveRoom' , ROOM_ID , user );
+    videos[id].pause();
+    videos[id].removeAttribute('src'); // empty source
+    videos[id].load();
 }); 
 
 let text = document.querySelector('#chat-message');
