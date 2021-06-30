@@ -169,7 +169,7 @@ video {
 }
 
 .rate {
-  float: left;
+  float: center;
   height: 46px;
   padding: 0 10px;
 }
