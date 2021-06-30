@@ -49,6 +49,19 @@
     margin: 0 0.5rem;
 }
 
+.end-call {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f01818;
+  height: 50px;
+  border-radius: 5px;
+  color: var(--main-brightcolor);
+  font-size: 1.2rem;
+  width: 50px;
+  margin: 0 0.5rem;
+}
+
 .main {
   overflow: hidden;
   height: 92vh;
