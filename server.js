@@ -15,7 +15,7 @@ app.get("/" , (req,res) =>{
     res.redirect(`/${uuidv4()}`);
  });
  
- app.get("/:leaveRoom" , (req,res) => {
+ app.get("/leaveRoom" , (req,res) => {
     res.render("RateExperience");
 }) 
 
