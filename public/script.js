@@ -138,7 +138,7 @@ mic.addEventListener("click", () => {
 
 leave.addEventListener("click", () => {
         if (confirm("Leave meeting?")) {
-            window.location.href = "/LeaveRoom";
+            window.location.href = "/leaveRoom";
         }
 });
 
