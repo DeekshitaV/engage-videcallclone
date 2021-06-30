@@ -138,7 +138,8 @@ mic.addEventListener("click", () => {
 
 leave.addEventListener("click", () => {
         if (confirm("Leave meeting?")) {
-           close();
+            var win = window.open('', '_self');
+            win.close();
         }
 });
 
