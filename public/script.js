@@ -108,6 +108,7 @@ text.addEventListener("keydown" , (e) => {
 const invite = document.querySelector('#invite');
 const mic = document.querySelector('#mic');
 const video = document.querySelector('#Video');
+const leave = document.querySelector('#leave');
 
 video.addEventListener("click", () => {
     const enabled = myVideoStream.getVideoTracks()[0].enabled;
@@ -133,6 +134,13 @@ mic.addEventListener("click", () => {
       html = `<i class="fas fa-microphone"></i>`;
       mic.innerHTML = html;
     }
+});
+
+leave.addEventListener("click", () => {
+        if (confirm("Leave meeting?")) {
+          socket.emit('disconnect');  
+          window.close();
+        }
 });
 
 const currentpage = window.location.href;
