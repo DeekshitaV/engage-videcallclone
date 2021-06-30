@@ -138,7 +138,7 @@ mic.addEventListener("click", () => {
 
 leave.addEventListener("click", () => {
         if (confirm("Leave meeting?")) {
-            window.location.href = "videocall-deekshitaverma.herokuapp.com/LeaveRoom";
+            window.location.href = "/LeaveRoom";
         }
 });
 
