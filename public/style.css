@@ -175,7 +175,7 @@ video {
   transform: translate(-50%, -50%);
   text-align: center;
   height: 46px;
-  padding: 0 0px;
+  padding: 0 10px;
 }
 .rate:not(:checked) > input {
   position:absolute;
