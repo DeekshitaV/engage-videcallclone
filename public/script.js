@@ -138,8 +138,7 @@ mic.addEventListener("click", () => {
 
 leave.addEventListener("click", () => {
         if (confirm("Leave meeting?")) {
-          socket.emit('disconnect');  
-          window.close();
+           close();
         }
 });
 
