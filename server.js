@@ -22,6 +22,10 @@ app.get("/:room" , (req,res) =>{
       
 });
 
+app.get("/leaveRoom" , (req,res) => {
+    res.render("RateExperience");
+})
+
 
 io.on('connection' , (socket) => {
     socket.on('joinRoom' , ( roomId , userId, userName) => {
