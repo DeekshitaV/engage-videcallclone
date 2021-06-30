@@ -168,8 +168,8 @@ video {
   display: none;
 }
 
-.rate {
-  float: center;
+.rate > h1{
+  display: flex;
   height: 46px;
   padding: 0 10px;
 }
