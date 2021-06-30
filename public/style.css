@@ -175,7 +175,6 @@ video {
   text-align: center;
   height: 46px;
   padding: 0 10px;
-  margin: auto;
 }
 .rate:not(:checked) > input {
   position:absolute;
