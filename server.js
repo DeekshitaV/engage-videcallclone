@@ -22,7 +22,7 @@ app.get("/:room" , (req,res) =>{
       
 });
 
-app.get("/leaveRoom" , (req,res) => {
+app.get("/:leaveRoom" , (req,res) => {
     res.render("RateExperience");
 })
 
