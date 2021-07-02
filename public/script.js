@@ -87,23 +87,39 @@ peer.on('open' , (id) => {
 });
 
 
-let text = document.querySelector('#chat-message');
-let send = document.getElementById('send');
-let messages = document.querySelector('.messages');
+sendMessage = () => {
+   
+    let text = document.querySelector('#chat-message');
+    let send = document.getElementById('send');
+    let messages = document.querySelector('.messages');
+    
+    send.addEventListener("click" , (e) => {
+       if(text.value.length !== 0 ){
+           socket.emit("message" , text.value);
+           text.value = "";
+       }
+    });
+    
+    text.addEventListener("keydown" , (e) => {
+        if(e.key === "Enter" && text.value.length !== 0 ){
+            socket.emit("message" , text.value);
+            text.value = "";
+        }
+    });
+    
+    socket.on("create-message", (message, userName) => {
+        messages.innerHTML =
+          messages.innerHTML +
+          `<div class="message">
+              <b><i class="far fa-user-circle"></i> <span> ${
+                userName === user ? "me" : userName
+              }</span> </b>
+              <span>${message}</span>
+          </div>`;
+    });
 
-send.addEventListener("click" , (e) => {
-   if(text.value.length !== 0 ){
-       socket.emit("message" , text.value);
-       text.value = "";
-   }
-});
+}
 
-text.addEventListener("keydown" , (e) => {
-    if(e.key === "Enter" && text.value.length !== 0 ){
-        socket.emit("message" , text.value);
-        text.value = "";
-    }
-});
 
 const invite = document.querySelector('#invite');
 const mic = document.querySelector('#mic');
@@ -150,13 +166,3 @@ invite.addEventListener("click", (e) => {
 
 });
 
-socket.on("create-message", (message, userName) => {
-    messages.innerHTML =
-      messages.innerHTML +
-      `<div class="message">
-          <b><i class="far fa-user-circle"></i> <span> ${
-            userName === user ? "me" : userName
-          }</span> </b>
-          <span>${message}</span>
-      </div>`;
-  });
