@@ -86,8 +86,7 @@ peer.on('open' , (id) => {
     socket.emit('joinRoom' , ROOM_ID , id , user);
 });
 
-
-sendMessage = () => {
+{
    
     let text = document.querySelector('#chat-message');
     let send = document.getElementById('send');
