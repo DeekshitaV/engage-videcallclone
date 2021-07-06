@@ -111,12 +111,14 @@ var peer = new Peer( undefined , {
               }</span> </b>
               <span>${message}</span>
           </div>`;
-          scrollToBottom();
+          
     });
 
     function scrollToBottom() {
         messageWindow.scrollTop = messages.scrollHeight;
     }
+
+    scrollToBottom;
 }
 
 
