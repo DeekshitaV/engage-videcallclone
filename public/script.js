@@ -115,7 +115,7 @@ var peer = new Peer( undefined , {
     });
 
     function scrollToBottom() {
-        messageWindow.scrollTop = messageWindow.scrollHeight;
+        messageWindow.scrollTop = messages.scrollHeight;
     }
 }
 
