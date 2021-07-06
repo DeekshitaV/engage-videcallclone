@@ -29,9 +29,9 @@ var peer = new Peer( undefined , {
     .then((stream) => {
         myVideoStream = stream;
         addVideoStream(myVideo, stream);
-        //listen to Call event
+        //listen to a new peer joining in
         peer.on('call', (call) => {
-            call.answer(stream);
+            call.answer(stream); // answer the call by sending in the media stream of the user
             const video = document.createElement("video");
             //listen to Stream
             call.on('stream' , (userVideoStream) => {
@@ -110,8 +110,12 @@ var peer = new Peer( undefined , {
               }</span> </b>
               <span>${message}</span>
           </div>`;
+          scrollToBottom();
     });
 
+    function scrollToBottom() {
+        messages.scrollTop = messages.scrollHeight;
+    }
 }
 
 
