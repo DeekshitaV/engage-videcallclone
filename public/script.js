@@ -19,7 +19,7 @@ var peer = new Peer( undefined , {
 });
 
 //connecting the users
-joinCall.addEventListener('click' , () => 
+
 {
 
     //take audio video permissions
@@ -79,7 +79,7 @@ joinCall.addEventListener('click' , () =>
         socket.emit('joinRoom' , ROOM_ID , id , user);
     });
 
-});
+}
 
 
 //Sending Messages functionality
