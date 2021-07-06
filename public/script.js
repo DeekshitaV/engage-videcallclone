@@ -111,7 +111,6 @@ var peer = new Peer( undefined , {
               }</span> </b>
               <span>${message}</span>
           </div>`;
-          messages.scrollTop(messages.outerHeight());
     });
 
     
