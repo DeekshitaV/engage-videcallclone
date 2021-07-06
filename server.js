@@ -26,8 +26,6 @@ app.get("/:room" , (req,res) =>{
 });
 
 
-
-
 io.on('connection' , (socket) => {
     socket.on('joinRoom' , ( roomId , userId, userName) => {
         socket.join(roomId);

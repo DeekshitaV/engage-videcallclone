@@ -3,7 +3,6 @@ const socket = io('/');
 let myVideoStream;
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
-const joinCall = document.createElement("#Video");
 
 myVideo.muted = true;
 var peers = {};
@@ -19,7 +18,6 @@ var peer = new Peer( undefined , {
 });
 
 //connecting the users
-
 {
 
     //take audio video permissions
