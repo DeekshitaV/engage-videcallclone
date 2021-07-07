@@ -111,9 +111,13 @@ var peer = new Peer( undefined , {
               }</span> </b>
               <span>${message}</span>
           </div>`;
+        scrollToBottom;  
     });
 
-    
+    const scrollToBottom = () => {
+        let d = $('.main-chat-window');
+        d.scrollTop(d.prop("scrollHeight"));
+      }
 }
 
 
