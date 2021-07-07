@@ -86,11 +86,12 @@ var peer = new Peer( undefined , {
     let text = document.querySelector('#chat-message');
     let send = document.getElementById('send');
     let messages = document.querySelector('.messages');
+    let d = $('.main-chat-window');
     
-    const scrollToBottom = () => {
-        let d = $('.main-chat-window');
-        d.scrollTop(d.prop('scrollHeight'));
-    }
+    // const scrollToBottom = () => {
+        
+    //     d.scrollTop(d.prop('scrollHeight'));
+    // }
     
     send.addEventListener("click" , (e) => {
        if(text.value.length !== 0 ){
@@ -117,7 +118,7 @@ var peer = new Peer( undefined , {
               }</span> </b>
               <span>${message}</span>
           </div>`; 
-    
+        d.scrollTop(d.prop('scrollHeight'));
     });
 
     
