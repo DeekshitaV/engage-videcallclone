@@ -80,19 +80,19 @@
             appId: "1:617837138911:web:2fc28bf42644211dbf6a6a",
             measurementId: "G-XRRQ0GCF4T"
         };
-        
+        let messages = document.querySelector('.messages');
         firebase.database().ref(ROOM_ID).on( 'value' , (snapshot) => {
-            for( var obj in snapshot.val){
-                let messages = document.querySelector('.messages');
+            snapshot.forEach(element => {
+                var obj = element.val();
                 messages.innerHTML =
                 messages.innerHTML +
                 `<div class="message">
                     <b><i class="far fa-user-circle"></i> <span> ${
-                        obj.name === user ? "me" : obj.name
+                        obj.name
                     }</span> </b>
                     <span>${obj.message}</span>
                 </div>`; 
-            }
+            });
         })
         </script>
     </body>
