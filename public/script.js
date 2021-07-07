@@ -98,7 +98,7 @@ var peer = new Peer( undefined , {
     }
     
     const sendData = (textMessage, userName) => {
-       firebase.database().ref( ROOM_ID + '/' + userName).set({ name : userName , message : textMessage});
+       firebase.database().ref( ROOM_ID + '/messages').push({ name : userName , message : textMessage});
     }
 
     send.addEventListener("click" , (e) => {
