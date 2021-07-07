@@ -11,7 +11,11 @@ myVideo.muted = true;
 var peers = {};
 
 //enter display name
-const user = prompt('Enter your display name');
+var username = "";
+do{
+  username = prompt('Enter your display name');
+}while(!username);
+const user = username;
 
 //peer to connect to WebRTC
 var peer = new Peer( undefined , {
