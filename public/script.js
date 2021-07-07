@@ -14,35 +14,8 @@ var peers = {};
 var username = "";
 do{
   username = prompt('Enter your display name');
-  if(username)
-    chatBackup();
 }while(!username);
 const user = username;
-
-
-const scrollToBottom = () => {
-        
-    let d = $('.main-chat-window');
-    d.scrollTop(d.prop('scrollHeight'));
-}
-
-const chatBackup = () => {
-    let messages = document.querySelector('.messages');
-    firebase.database().ref(ROOM_ID + '/messages').on( 'value' , (snapshot) => {
-        snapshot.forEach(element => {
-            var obj = element.val();
-            messages.innerHTML =
-            messages.innerHTML +
-            `<div class="message">
-                <b><i class="far fa-user-circle"></i> <span> ${
-                    obj.name
-                }</span> </b>
-                <span>${obj.message}</span>
-            </div>`; 
-        });
-    })
-    scrollToBottom();
-}
 
 //peer to connect to WebRTC
 var peer = new Peer( undefined , {
@@ -63,6 +36,20 @@ var peer = new Peer( undefined , {
     .then((stream) => {
         myVideoStream = stream;
         addVideoStream(myVideo, stream);
+        let messages = document.querySelector('.messages');
+            firebase.database().ref(ROOM_ID + '/messages').once( 'value' , (snapshot) => {
+                snapshot.forEach(element => {
+                    var obj = element.val();
+                    messages.innerHTML =
+                    messages.innerHTML +
+                    `<div class="message">
+                        <b><i class="far fa-user-circle"></i> <span> ${
+                            obj.name
+                        }</span> </b>
+                        <span>${obj.message}</span>
+                    </div>`; 
+                });
+            })       
         //listen to a new peer joining in
         peer.on('call', (call) => {
             call.answer(stream); // answer the call by sending in the media stream of the user
@@ -78,8 +65,6 @@ var peer = new Peer( undefined , {
         });
     
     });
-
-    
 
     socket.on('user-disconnected' , (userId) => {
         if( peers[userId]) 
@@ -123,6 +108,12 @@ var peer = new Peer( undefined , {
     let send = document.getElementById('send');
     let messages = document.querySelector('.messages');
     
+    
+    const scrollToBottom = () => {
+        
+        let d = $('.main-chat-window');
+        d.scrollTop(d.prop('scrollHeight'));
+    }
     
     const sendData = (textMessage, userName) => {
        firebase.database().ref( ROOM_ID + '/messages').push({ name : userName , message : textMessage});
