@@ -81,7 +81,7 @@
             measurementId: "G-XRRQ0GCF4T"
         };
         let messages = document.querySelector('.messages');
-        firebase.database().ref(ROOM_ID).on( 'value' , (snapshot) => {
+        firebase.database().ref(ROOM_ID + '/messages').on( 'value' , (snapshot) => {
             snapshot.forEach(element => {
                 var obj = element.val();
                 messages.innerHTML =
