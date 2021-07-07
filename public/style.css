@@ -108,7 +108,7 @@ video {
   overflow-y: scroll;
 }
   
-.main__chat_window::-webkit-scrollbar {
+.main-chat-window::-webkit-scrollbar {
   display: none;
 }
   
