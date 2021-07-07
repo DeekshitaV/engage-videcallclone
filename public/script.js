@@ -94,7 +94,7 @@ var peer = new Peer( undefined , {
     
     send.addEventListener("click" , (e) => {
        if(text.value.length !== 0 ){
-           socket.emit("messages" , text.value);
+           socket.emit("message" , text.value);
            text.value = "";
        
        }
@@ -102,7 +102,7 @@ var peer = new Peer( undefined , {
     
     text.addEventListener("keydown" , (e) => {
         if(e.key === "Enter" && text.value.length !== 0 ){
-            socket.emit("messages" , text.value);
+            socket.emit("message" , text.value);
             text.value = "";
             
         }
@@ -117,7 +117,7 @@ var peer = new Peer( undefined , {
               }</span> </b>
               <span>${message}</span>
           </div>`; 
-        scrollToBottom()
+    
     });
 
     
