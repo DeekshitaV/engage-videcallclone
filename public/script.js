@@ -14,9 +14,11 @@ var peers = {};
 var username = "";
 do{
   username = prompt('Enter your display name');
+  if(username)
+    chatBackup();
 }while(!username);
 const user = username;
-chatBackup();
+
 
 const scrollToBottom = () => {
         
