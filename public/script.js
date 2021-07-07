@@ -92,6 +92,7 @@ var peer = new Peer( undefined , {
        if(text.value.length !== 0 ){
            socket.emit("message" , text.value);
            text.value = "";
+           scrollToBottom(); 
        }
     });
     
@@ -99,6 +100,7 @@ var peer = new Peer( undefined , {
         if(e.key === "Enter" && text.value.length !== 0 ){
             socket.emit("message" , text.value);
             text.value = "";
+            scrollToBottom(); 
         }
     });
     
@@ -110,8 +112,7 @@ var peer = new Peer( undefined , {
                 userName === user ? "me" : userName
               }</span> </b>
               <span>${message}</span>
-          </div>`;
-        scrollToBottom();  
+          </div>`; 
     });
 
     const scrollToBottom = () => {
