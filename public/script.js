@@ -111,7 +111,7 @@ var peer = new Peer( undefined , {
               }</span> </b>
               <span>${message}</span>
           </div>`;
-        scrollToBottom;  
+        scrollToBottom();  
     });
 
     const scrollToBottom = () => {
