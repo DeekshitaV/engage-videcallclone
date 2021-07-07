@@ -88,7 +88,7 @@ var peer = new Peer( undefined , {
     let messages = document.querySelector('.messages');
     
     const scrollToBottom = () => {
-        let d = $('.main-chat-window');
+        let d = $('.messages');
         d.scrollTop(d.prop('scrollHeight'));
     }
     
