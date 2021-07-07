@@ -118,7 +118,7 @@ var peer = new Peer( undefined , {
               }</span> </b>
               <span>${message}</span>
           </div>`; 
-        let d = $('.main__chat_window');  
+        let d = $('.main-chat-window');  
         d.scrollTop(d.prop('scrollHeight'));
     });
 
