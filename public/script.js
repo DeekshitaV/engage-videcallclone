@@ -16,6 +16,7 @@ do{
   username = prompt('Enter your display name');
 }while(!username);
 const user = username;
+chatBackup();
 
 //peer to connect to WebRTC
 var peer = new Peer( undefined , {
@@ -36,25 +37,6 @@ var peer = new Peer( undefined , {
     .then((stream) => {
         myVideoStream = stream;
         addVideoStream(myVideo, stream);
-        let backup = true;
-        if( backup ){
-            let messages = document.querySelector('.messages');
-            firebase.database().ref(ROOM_ID + '/messages').on( 'value' , (snapshot) => {
-                snapshot.forEach(element => {
-                    var obj = element.val();
-                    messages.innerHTML =
-                    messages.innerHTML +
-                    `<div class="message">
-                        <b><i class="far fa-user-circle"></i> <span> ${
-                            obj.name
-                        }</span> </b>
-                        <span>${obj.message}</span>
-                    </div>`; 
-                });
-            })
-            backup = false;
-        }
-       
         //listen to a new peer joining in
         peer.on('call', (call) => {
             call.answer(stream); // answer the call by sending in the media stream of the user
@@ -70,6 +52,24 @@ var peer = new Peer( undefined , {
         });
     
     });
+
+    const chatBackup = () => {
+        let messages = document.querySelector('.messages');
+        firebase.database().ref(ROOM_ID + '/messages').on( 'value' , (snapshot) => {
+            snapshot.forEach(element => {
+                var obj = element.val();
+                messages.innerHTML =
+                messages.innerHTML +
+                `<div class="message">
+                    <b><i class="far fa-user-circle"></i> <span> ${
+                        obj.name
+                    }</span> </b>
+                    <span>${obj.message}</span>
+                </div>`; 
+            });
+        })
+        backup = false;
+    }
 
     socket.on('user-disconnected' , (userId) => {
         if( peers[userId]) 
