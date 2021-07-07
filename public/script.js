@@ -24,6 +24,12 @@ var peer = new Peer( undefined , {
     port : '443',
 });
 
+const scrollToBottom = () => {
+        
+    let d = $('.main-chat-window');
+    d.scrollTop(d.prop('scrollHeight'));
+}
+
 //connecting the users
 {
 
@@ -49,6 +55,7 @@ var peer = new Peer( undefined , {
                         <span>${obj.message}</span>
                     </div>`; 
                 });
+                scrollToBottom();
             })       
         //listen to a new peer joining in
         peer.on('call', (call) => {
@@ -109,11 +116,7 @@ var peer = new Peer( undefined , {
     let messages = document.querySelector('.messages');
     
     
-    const scrollToBottom = () => {
-        
-        let d = $('.main-chat-window');
-        d.scrollTop(d.prop('scrollHeight'));
-    }
+
     
     const sendData = (textMessage, userName) => {
        firebase.database().ref( ROOM_ID + '/messages').push({ name : userName , message : textMessage});
