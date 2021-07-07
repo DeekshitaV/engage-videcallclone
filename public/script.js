@@ -36,6 +36,20 @@ var peer = new Peer( undefined , {
     .then((stream) => {
         myVideoStream = stream;
         addVideoStream(myVideo, stream);
+        let messages = document.querySelector('.messages');
+        firebase.database().ref(ROOM_ID + '/messages').on( 'value' , (snapshot) => {
+            snapshot.forEach(element => {
+                var obj = element.val();
+                messages.innerHTML =
+                messages.innerHTML +
+                `<div class="message">
+                    <b><i class="far fa-user-circle"></i> <span> ${
+                        obj.name
+                    }</span> </b>
+                    <span>${obj.message}</span>
+                </div>`; 
+            });
+        })
         //listen to a new peer joining in
         peer.on('call', (call) => {
             call.answer(stream); // answer the call by sending in the media stream of the user
