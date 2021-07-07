@@ -1,4 +1,7 @@
 const socket = io('/');
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 let myVideoStream;
 const videoGrid = document.getElementById("video-grid");
@@ -94,11 +97,15 @@ var peer = new Peer( undefined , {
         d.scrollTop(d.prop('scrollHeight'));
     }
     
+    const sendData = (textMessage, userName) => {
+       firebase.database().ref( ROOM_ID ).set({ name : userName , message : textMessage});
+    }
+
     send.addEventListener("click" , (e) => {
        if(text.value.length !== 0 ){
            socket.emit("message" , text.value);
            text.value = "";
-       
+           
        }
     });
     
@@ -119,6 +126,7 @@ var peer = new Peer( undefined , {
               }</span> </b>
               <span>${message}</span>
           </div>`; 
+        sendData(message,userName);  
         scrollToBottom();
     });
 
