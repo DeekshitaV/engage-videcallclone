@@ -198,10 +198,10 @@ const scrollToBottom = () => {
         }
     });
 
-    const currentpage = window.location.href;   
+    const currentpage = "https://roomchat-deekshitaverma.herokuapp.com/" + ROOM_ID;   
 
     invite.addEventListener("click", (e) => {
-        var link = 'mailto:attendee@example.org?Subject:Join My Teams Meeting&body=Link to my meeting : ' + currentpage; 
+        var link = 'mailto:attendee@example.org?Subject:Join My Teams Meeting&body=Link to my chat room : ' + currentpage; 
         window.open(link);
 
     });
