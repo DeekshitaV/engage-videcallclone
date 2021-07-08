@@ -42,7 +42,7 @@ io.on('connection' , (socket) => {
         });
     });
     socket.on("chat", (roomId, message , userName) => {
-        io.to(roomId).emit("createMessage", message, userName);
+        io.to(roomId).emit("createMessage", (message, userName));
     }); 
 });
 
