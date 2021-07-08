@@ -3,11 +3,6 @@ const socket = io('/');
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-var peer = new Peer( undefined , {
-    path : '/peerjs',
-    host : '/',
-    port : '443',
-});
 
 var username = "";
 do{
