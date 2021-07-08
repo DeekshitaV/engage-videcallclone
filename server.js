@@ -14,15 +14,10 @@ app.use(express.static('public'));
 
 
 app.get("/" , (req,res) =>{
-    res.redirect(`/chat-${uuidv4()}`);
+    res.redirect(`/call-${uuidv4()}`);
  });
  
 
-app.get('/chat-:room' , (req,res) =>{
-  
-     res.render("ChatRoom" , {roomId: req.params.room});
-      
-});
 
 app.get('/call-:room' , (req,res) =>{
     res.render('CallRoom' , {roomId: req.params.room});
@@ -41,9 +36,6 @@ io.on('connection' , (socket) => {
             socket.broadcast.to(roomId).emit('user-disconnected' , userId);
         });
     });
-    socket.on("chat", (roomId, message , userName) => {
-        io.to(roomId).emit("createMessage", (message, userName));
-    }); 
 });
 
 server.listen(process.env.PORT || 3030);
