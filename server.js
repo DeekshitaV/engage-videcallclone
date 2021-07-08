@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 
 app.get("/" , (req,res) =>{
-    res.redirect(`/${uuidv4()}`);
+    window.location.href = "https://roomchat-deekshitaverma.herokuapp.com/";
  });
  
 
