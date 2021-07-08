@@ -14,19 +14,26 @@ app.use(express.static('public'));
 
 
 app.get("/" , (req,res) =>{
-    res.redirect(`/${uuidv4()}`);
- });
- 
- app.get("/leaveRoom" , (req,res) => {
-    res.render("RateExperience");
-}) 
+    res.redirect(`/chat/${uuidv4()}`);
+});
 
-app.get("/:room" , (req,res) =>{
+
+ 
+//  app.get("/leaveRoom" , (req,res) => {
+//     res.render("RateExperience");
+// }) 
+
+app.get("/chat/:room" , (req,res) =>{
   
-     res.render("CallRoom", {roomId: req.params.room});
+     res.render("ChatRoom", {roomId: req.params.room});
       
 });
 
+app.get("/call/:room" , (req,res) =>{
+  
+    res.render("CallRoom", {roomId: req.params.room});
+     
+});
 
 
 io.on('connection' , (socket) => {
