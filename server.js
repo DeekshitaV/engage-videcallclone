@@ -14,12 +14,12 @@ app.use(express.static('public'));
 
 
 app.get("/" , (req,res) =>{
-    res.redirect(`/call-${uuidv4()}`);
+    res.redirect(`/${uuidv4()}`);
  });
  
 
 
-app.get('/call-:room' , (req,res) =>{
+app.get('/:room' , (req,res) =>{
     res.render('CallRoom' , {roomId: req.params.room});
 });
 

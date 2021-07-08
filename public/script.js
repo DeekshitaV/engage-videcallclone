@@ -144,7 +144,7 @@ const scrollToBottom = () => {
           messages.innerHTML +
           `<div class="message">
               <b><i class="far fa-user-circle"></i> <span> ${
-                userName === user ? "me" : userName
+                userName
               }</span> </b>
               <span>${message}</span>
           </div>`; 
@@ -194,7 +194,7 @@ const scrollToBottom = () => {
 
     leave.addEventListener("click", () => {
         if (confirm("Leave meeting?")) {
-            window.location.href = "/leaveRoom";
+            window.location.href = "https://roomchat-deekshitaverma.herokuapp.com/" + ROOM_ID;
         }
     });
 
