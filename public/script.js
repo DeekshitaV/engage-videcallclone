@@ -43,7 +43,8 @@ const scrollToBottom = () => {
         myVideoStream = stream;
         addVideoStream(myVideo, stream);
         let messages = document.querySelector('.messages');
-            firebase.database().ref(ROOM_ID + '/messages').once( 'value' , (snapshot) => {
+            firebase.database().ref(ROOM_ID + '/messages').on( 'value' , (snapshot) => {
+                messages.innerHTML = "";
                 snapshot.forEach(element => {
                     var obj = element.val();
                     messages.innerHTML =
@@ -124,7 +125,6 @@ const scrollToBottom = () => {
 
     send.addEventListener("click" , (e) => {
        if(text.value.length !== 0 ){
-           socket.emit("message" , text.value);
            sendData(text.value,user);     
            text.value = "";
            
@@ -133,24 +133,12 @@ const scrollToBottom = () => {
     
     text.addEventListener("keydown" , (e) => {
         if(e.key === "Enter" && text.value.length !== 0 ){
-            socket.emit("message" , text.value);
             sendData(text.value,user);
             text.value = "";            
         }
     });
     
-    socket.on("create-message", (message, userName) => {
-        messages.innerHTML =
-          messages.innerHTML +
-          `<div class="message">
-              <b><i class="far fa-user-circle"></i> <span> ${
-                userName
-              }</span> </b>
-              <span>${message}</span>
-          </div>`; 
-        scrollToBottom();
-    });
-
+   
     
 }
 
