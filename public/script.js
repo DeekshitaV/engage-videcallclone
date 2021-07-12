@@ -41,23 +41,7 @@ const scrollToBottom = () => {
     //once taken start streaming video
     .then((stream) => {
         myVideoStream = stream;
-        addVideoStream(myVideo, stream);
-        let messages = document.querySelector('.messages');
-            firebase.database().ref(ROOM_ID + '/messages').on( 'value' , (snapshot) => {
-                messages.innerHTML = "";
-                snapshot.forEach(element => {
-                    var obj = element.val();
-                    messages.innerHTML =
-                    messages.innerHTML +
-                    `<div class="message">
-                        <b><i class="far fa-user-circle"></i> <span> ${
-                            obj.name
-                        }</span> </b>
-                        <span>${obj.message}</span>
-                    </div>`; 
-                });
-                scrollToBottom();
-            })       
+        addVideoStream(myVideo, stream);     
         //listen to a new peer joining in
         peer.on('call', (call) => {
             call.answer(stream); // answer the call by sending in the media stream of the user
@@ -138,7 +122,21 @@ const scrollToBottom = () => {
         }
     });
     
-   
+    firebase.database().ref(ROOM_ID + '/messages').on( 'value' , (snapshot) => {
+        messages.innerHTML = "";
+        snapshot.forEach(element => {
+            var obj = element.val();
+            messages.innerHTML =
+            messages.innerHTML +
+            `<div class="message">
+                <b><i class="far fa-user-circle"></i> <span> ${
+                    obj.name
+                }</span> </b>
+                <span>${obj.message}</span>
+            </div>`; 
+        });
+        scrollToBottom();
+    })  
     
 }
 
